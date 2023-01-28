@@ -1,0 +1,31 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta  charset="UTF-8">
+        <title>{% block title %}Главная{% endblock %}</title>
+        <link rel="stylesheet" type= "text/css" 
+        href="{% static 'partControl/style.css' %}">
+    </head>
+    <body>
+        <header>Реализация проектов</header>
+        <h1>Производство</h1>
+        <nav>Навигация</nav>
+        <a href="{% url 'index' %}">Главная</a>
+        <a href="{% url 'stadyProduction' %}">Стадия изготовления</a>
+        <a href="{% url 'add' %}">Добавить</a>
+        <a href="{% url 'addProject' %}">Добавить проект</a>
+        <nav>Проекты
+            {% for project in projects %}
+            <a href="{% url 'by_project' project.pk %}">
+                {{ project.name }}
+            </a>
+            {% endfor %}
+        </nav>
+        <section>
+            {% block content %}
+            {% endblock %}
+        </section>
+    </body>
+</html>
